@@ -1,0 +1,92 @@
+$purple-50: #EEEDFE;
+$purple-200: #AFA9EC;
+$purple-400: #7F77DD;
+$purple-600: #534AB7;
+$purple-800: #3C3489;
+$teal-50: #E1F5EE;
+$teal-200: #5DCAA5;
+$teal-600: #0F6E56;
+$teal-800: #085041;
+$amber-50: #FAEEDA;
+$amber-200: #EF9F27;
+$amber-600: #854F0B;
+$amber-800: #633806;
+$coral-50: #FAECE7;
+$coral-600: #993C1D;
+$coral-800: #712B13;
+$gray-50: #F1EFE8;
+$gray-100: #D3D1C7;
+$gray-200: #B4B2A9;
+$gray-400: #888780;
+$gray-600: #5F5E5A;
+$gray-800: #444441;
+$white: #FFFFFF;
+$black: #0A0A0A;
+
+$colors: (
+        "background": (
+                "page":    #F1EFE8,
+                "surface": #FFFFFF,
+                "subtle":  #F1EFE8,
+        ),
+        "text": (
+                "primary":   #0A0A0A,
+                "secondary": #5F5E5A,
+                "hint":      #888780,
+                "danger":    #712B13,
+        ),
+
+        "border": (
+                "subtle":   #D3D1C7,
+                "default":  #B4B2A9,
+                "emphasis": #888780,
+        ),
+
+        "status": (
+                "dream-bg":       #EEEDFE,
+                "dream-border":   #AFA9EC,
+                "dream-text":     #3C3489,
+
+                "planned-bg":     #FAEEDA,
+                "planned-border": #EF9F27,
+                "planned-text":   #633806,
+
+                "visited-bg":     #E1F5EE,
+                "visited-border": #5DCAA5,
+                "visited-text":   #085041,
+        ),
+
+        "action": (
+                "primary-bg":       #534AB7,
+                "primary-text":     #FFFFFF,
+                "primary-hover-bg": #3C3489,
+
+                "secondary-bg":     #FFFFFF,
+                "secondary-text":   #444441,
+                "secondary-border": #B4B2A9,
+
+                "danger-bg":        #FAECE7,
+                "danger-text":      #712B13,
+        ),
+
+        "avatar": (
+                "bg":   #EEEDFE,
+                "text": #3C3489,
+        ),
+);
+
+@function color($group, $variant) {
+  $group-map: map-get($colors, $group);
+
+  @if $group-map == null {
+    @error "Color group '#{$group}' not found.";
+  }
+
+  $value: map-get($group-map, $variant);
+
+  @if $value == null {
+    @error "Color variant '#{$variant}' not found in group '#{$group}'.";
+  }
+
+  @return $value;
+};
