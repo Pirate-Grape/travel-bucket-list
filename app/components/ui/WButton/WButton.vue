@@ -1,16 +1,30 @@
 <script setup lang="ts">
-withDefaults(defineProps<{
+import WLoader from "~/components/ui/WLoader/WLoader.vue";
+
+const props = withDefaults(defineProps<{
   type?: 'primary' | 'secondary'
   disabled?: boolean
+  isLoading?: boolean
 }>(), {
   type: 'primary',
-  disabled: false
+  disabled: false,
+  isLoading: false,
 })
+
+defineEmits<{
+  (e: 'click'): void
+}>()
 </script>
 
 <template>
-    <button :class="type" :disabled="disabled">
-      <slot>Button</slot>
+    <button
+        :class="[props.type, props.isLoading ? 'loading' : '']"
+        :disabled="props.disabled"
+        data-test="button"
+        @click="$emit('click')"
+    >
+      <slot v-if="!props.isLoading"></slot>
+      <WLoader v-if="props.isLoading" :size-px="24" :type="props.type" class="loader" />
     </button>
 </template>
 
@@ -19,10 +33,15 @@ button {
   font-size: 14px;
   padding: 10px 22px;
   font-weight: 500;
-  font-family: 'DM Sans', sans-serif;
+  font-family: DM Sans, sans-serif;
   transition: background 0.12s;
   cursor: pointer;
   border-radius: 8px;
+  height: 44px;
+
+  &.loading {
+    pointer-events: none;
+  }
 
   &.primary {
     color: color(background, surface);

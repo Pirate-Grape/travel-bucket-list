@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import WButton from "../components/ui/WButton/WButton.vue";
+import WLoader from "~/components/ui/WLoader/WLoader.vue";
 
 definePageMeta({
   layout: 'default',
@@ -12,7 +13,7 @@ definePageMeta({
     ui-test
   </header>
   Primary btn:
-  <div class="btn-container">
+  <div class="ui-test-container">
     <WButton
         v-for="condition of [false, true]"
         :key="`primary-disabled-${condition}`"
@@ -20,9 +21,14 @@ definePageMeta({
     >
       Start my list
     </WButton>
+    <WButton
+        is-loading
+    >
+      Start my list
+    </WButton>
   </div>
   Secondary btn:
-  <div class="btn-container">
+  <div class="ui-test-container">
     <WButton
         v-for="condition of [false, true]"
         :key="`secondary-disabled-${condition}`"
@@ -31,6 +37,15 @@ definePageMeta({
     >
       Browse public lists
     </WButton>
+    <WButton
+        type="secondary"
+        is-loading
+    >
+    </WButton>
+  </div>
+  Loader:
+  <div class="ui-test-container">
+    <WLoader v-for="size of [24, 32, 64]" class="loader" :size-px="size" />
   </div>
 </div>
 </template>
@@ -41,7 +56,7 @@ header {
   margin-bottom: 18px;
 }
 
-.btn-container {
+.ui-test-container {
   display: flex;
   gap: 16px;
 
