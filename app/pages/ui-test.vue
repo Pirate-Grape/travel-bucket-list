@@ -1,9 +1,17 @@
 <script setup lang="ts">
-import WButton from "../components/ui/WButton/WButton.vue";
-import WLoader from "~/components/ui/WLoader/WLoader.vue";
+import WButton from "../components/ui/WButton.vue";
+import WLoader from "../components/ui/WLoader.vue";
+import WInput from "../components/ui/WInput.vue";
+import {watch} from "vue";
 
 definePageMeta({
   layout: 'default',
+})
+
+const textInput = ref('')
+
+watch(textInput, (vale) => {
+  console.log(vale);
 })
 </script>
 
@@ -46,6 +54,16 @@ definePageMeta({
   Loader:
   <div class="ui-test-container">
     <WLoader v-for="size of [24, 32, 64]" class="loader" :size-px="size" />
+  </div>
+
+  <div class="ui-test-container">
+    <WInput
+        v-model="textInput"
+        type="number"
+        placeholder="Введите тестовый текст"
+        label="Тестовый инпут"
+        error="Тестовая ошибка"
+    />
   </div>
 </div>
 </template>

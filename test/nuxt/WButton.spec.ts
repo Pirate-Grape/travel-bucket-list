@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { describe, it, expect } from 'vitest'
-import WButton from '~/components/ui/WButton/WButton.vue'
+import WButton from '~/components/ui/WButton.vue'
 
 describe('WButton', () => {
     it('renders the slot content', () => {

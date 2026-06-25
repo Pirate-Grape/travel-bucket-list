@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import WLoader from "~/components/ui/WLoader/WLoader.vue";
+import WLoader from "@/components/ui/WLoader.vue";
 
 const props = withDefaults(defineProps<{
   type?: 'primary' | 'secondary'
@@ -55,8 +55,12 @@ button {
 
   &.secondary {
     color: color(text, primary);
-    background: color(background, page);
+    background: transparent;
     border: .5px solid color(border, default);
+
+    &:hover:not(:disabled) {
+      background: color(background, subtle);
+    }
   }
 
   &:disabled {
