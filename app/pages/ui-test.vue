@@ -2,6 +2,7 @@
 import WButton from "../components/ui/WButton.vue";
 import WLoader from "../components/ui/WLoader.vue";
 import WInput from "../components/ui/WInput.vue";
+import WDateInput from "~/components/ui/WDateInput.vue";
 
 definePageMeta({
   layout: 'default',
@@ -9,6 +10,8 @@ definePageMeta({
 
 const textValue = ref('')
 const numberValue = ref('')
+const dateValue = ref(new Date(0).toISOString())
+const dateTimeValue = ref(new Date(0).toISOString())
 </script>
 
 <template>
@@ -80,6 +83,20 @@ const numberValue = ref('')
         type="number"
         placeholder="Введите тестовое число"
         label="Тестовый инпут с числом"
+        error="Тестовая ошибка"
+    />
+    <WDateInput
+        v-model="dateValue"
+        type="date"
+        placeholder="Введите тестовое число"
+        label="Тестовый инпут с датой"
+        error="Тестовая ошибка"
+    />
+    <WDateInput
+        v-model="dateTimeValue"
+        type="datetime"
+        placeholder="Введите тестовое число"
+        label="Тестовый инпут с датой и временем"
         error="Тестовая ошибка"
     />
   </div>
