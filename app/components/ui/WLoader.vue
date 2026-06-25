@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const props = withDefaults(defineProps<{
-  type?: 'primary' | 'secondary',
+  type?: 'primary' | 'secondary' | 'ghost',
   sizePx?: number
 }>(), {
   type: 'primary',
@@ -28,7 +28,7 @@ const size = computed(() => `${props.sizePx}px`)
     border-bottom-color: #FFF;
   }
 
-  &.secondary {
+  &.secondary, &.ghost {
     border: 5px solid #FFF;
     border-bottom-color: color(action, primary-hover-bg);
   }

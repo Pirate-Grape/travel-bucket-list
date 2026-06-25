@@ -43,10 +43,15 @@ describe('WButton', () => {
             props: { type: 'secondary' },
         })
 
+        const wrapperGhost = mount(WButton, {
+            props: { type: 'ghost' },
+        })
+
         const wrapperTypeless = mount(WButton)
 
         expect(wrapperPrimary.classes()).toContain('primary')
         expect(wrapperTypeless.classes()).toContain('primary')
         expect(wrapperSecondary.classes()).toContain('secondary')
+        expect(wrapperGhost.classes()).toContain('ghost')
     })
 })

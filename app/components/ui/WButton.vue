@@ -2,7 +2,7 @@
 import WLoader from "@/components/ui/WLoader.vue";
 
 const props = withDefaults(defineProps<{
-  type?: 'primary' | 'secondary'
+  type?: 'primary' | 'secondary' | 'ghost'
   disabled?: boolean
   isLoading?: boolean
 }>(), {
@@ -61,6 +61,13 @@ button {
     &:hover:not(:disabled) {
       background: color(background, subtle);
     }
+  }
+
+  &.ghost {
+    color: color(text, primary);
+    background: transparent;
+    padding: 10px 10px;
+    border: unset;
   }
 
   &:disabled {

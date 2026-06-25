@@ -2,17 +2,13 @@
 import WButton from "../components/ui/WButton.vue";
 import WLoader from "../components/ui/WLoader.vue";
 import WInput from "../components/ui/WInput.vue";
-import {watch} from "vue";
 
 definePageMeta({
   layout: 'default',
 })
 
-const textInput = ref('')
-
-watch(textInput, (vale) => {
-  console.log(vale);
-})
+const textValue = ref('')
+const numberValue = ref('')
 </script>
 
 <template>
@@ -51,6 +47,22 @@ watch(textInput, (vale) => {
     >
     </WButton>
   </div>
+  Ghost btn:
+  <div class="ui-test-container">
+    <WButton
+        v-for="condition of [false, true]"
+        :key="`ghost-disabled-${condition}`"
+        type="ghost"
+        :disabled="condition"
+    >
+      X
+    </WButton>
+    <WButton
+        type="ghost"
+        is-loading
+    >
+    </WButton>
+  </div>
   Loader:
   <div class="ui-test-container">
     <WLoader v-for="size of [24, 32, 64]" class="loader" :size-px="size" />
@@ -58,10 +70,16 @@ watch(textInput, (vale) => {
 
   <div class="ui-test-container">
     <WInput
-        v-model="textInput"
-        type="number"
+        v-model="textValue"
         placeholder="Введите тестовый текст"
         label="Тестовый инпут"
+        error="Тестовая ошибка"
+    />
+    <WInput
+        v-model="numberValue"
+        type="number"
+        placeholder="Введите тестовое число"
+        label="Тестовый инпут с числом"
         error="Тестовая ошибка"
     />
   </div>
